@@ -2,7 +2,7 @@
 
 Turn your project's gherkin files into simple documentation.
 
-[See how sample documentation looks like.](https://pietmichal.github.io/gherkin-to-docs)
+[See how sample documentation looks like.](https://pietmichal.github.io/gherkin-to-docs/example)
 
 ## Motivation
 
