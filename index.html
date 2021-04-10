@@ -1,4 +1,4 @@
-export const outputTemplate = `
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -178,12 +178,50 @@ export const outputTemplate = `
         <div style="text-align: center; font-size: 32px;">🥒➡️📄</div>
         <b id="navigation-header">Gherkin To Docs</b>
       </a>
-      {{NAVIGATION}}
+      <ul><li><a href="#another">another</a></li>
+<li><a href="#example">example</a></li>
+<li><a href="#sub level">sub level</a></li></ul>
     </div>
   </nav>
   <main>
-    {{CONTENT}}
+    <pre id="another"><span class="tag">@ignore</span>
+<strong>Feature:</strong> Another
+
+  <strong>Rules:</strong>
+  ======
+  - Example rule
+
+  <span class="comment"># This is a comment</span>
+  <span class="comment"># This is another comment</span>
+  <strong>Scenario:</strong> another
+    <strong class="step">Given</strong> I have a feature file
+    <strong class="step">When</strong> I run the generator
+    <strong class="step">Then</strong> I have living documentation
+</pre>
+<pre id="example"><strong>Feature:</strong> Example
+
+  <strong>Rules:</strong>
+  ======
+  - Example rule
+
+  <strong>Scenario:</strong> Example
+    <strong class="step">Given</strong> I have a feature file
+    <strong class="step">When</strong> I run the generator
+    <strong class="step">Then</strong> I have living documentation
+</pre>
+<pre id="sub level"><strong>Feature:</strong> Subscribers see different sets of stock images based on their subscription level
+
+  <span class="tag">@ignore</span><span class="tag">@smoke</span>
+  <strong>Scenario:</strong> Free subscribers see only the free articles
+    <strong class="step">Given</strong> Free Frieda has a free subscription
+    <strong class="step">When</strong> Free Frieda logs in with her valid credentials
+    <strong class="step">Then</strong> she sees a Free article on the home page
+
+  <span class="tag">@smoke</span>
+  <strong>Scenario:</strong> Subscriber with a paid subscription can access both free and paid articles
+    <strong class="step">Given</strong> Paid Patty has a basic-level paid subscription
+    <strong class="step">When</strong> Paid Patty logs in with her valid credentials
+    <strong class="step">Then</strong> she sees a Free article and a Paid article on the home page</pre>
   </main>
   </body>
 </html>
-`;

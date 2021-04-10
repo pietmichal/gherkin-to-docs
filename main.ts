@@ -8,7 +8,10 @@ const features: { name: string; content: string }[] = [];
 try {
   for await (const file of expandGlob("**/*.feature")) {
     features.push({
-      name: file.name,
+      name: file.name
+        .replace(".feature", "")
+        .replace("-", " ")
+        .replace("_", " "),
       content: await Deno.readTextFile(file.path),
     });
     console.log("  ✔️ ", file.name);
@@ -62,11 +65,13 @@ function getContentOutput() {
       // Tags
       .replaceAll(
         /@(.*?)\n/g,
-        (str) => `<span class="tag">${str.replace(/\n/, "")}</span>`
+        (str) =>
+          `<span class="tag">${str.replace(/\n/, "").replace(" ", "")}</span>`
       )
       .replaceAll(
         /@(.*?)\s/g,
-        (str) => `<span class="tag">${str.replace(/\s/, " ")}</span>`
+        (str) =>
+          `<span class="tag">${str.replace(/\s/, " ").replace(" ", "")}</span>`
       )
   );
 }
