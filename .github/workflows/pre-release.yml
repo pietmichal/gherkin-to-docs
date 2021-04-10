@@ -1,0 +1,33 @@
+name: pre-release
+
+on:
+  push:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  pre-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: denoland/setup-deno@main
+        with:
+          deno-version: v1.x
+      - name: build
+        run: |
+          deno compile --allow-write --allow-read --unstable --target aarch64-apple-darwin --output gherkin-to-docs-win-x86_64 main.ts
+          deno compile --allow-write --allow-read --unstable --target aarch64-apple-darwin --output gherkin-to-docs-linux-x86_64 main.ts
+          deno compile --allow-write --allow-read --unstable --target aarch64-apple-darwin --output gherkin-to-docs-macos-x86_64 main.ts
+          deno compile --allow-write --allow-read --unstable --target aarch64-apple-darwin --output gherkin-to-docs-macos-aarch64 main.ts
+      - uses: marvinpinto/action-automatic-releases@v1.1.1
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: "latest"
+          files: |
+            gherkin-to-docs-win-x86_64.exe
+            gherkin-to-docs-linux-x86_64
+            gherkin-to-docs-macos-x86_64
+            gherkin-to-docs-macos-aarch64
