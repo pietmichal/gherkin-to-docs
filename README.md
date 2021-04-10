@@ -1,4 +1,4 @@
-# 📄 Gherkin To Docs
+# 🥒➡️📄 Gherkin To Docs
 
 Turn your project's gherkin files into simple documentation.
 
