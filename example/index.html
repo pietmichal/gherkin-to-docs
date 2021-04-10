@@ -33,24 +33,6 @@
         font-family: Montserrat,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
       }
 
-      a {
-        color: #eeeeee;
-        text-decoration: none;
-      }
-
-      a:hover {
-        color: #eeeeee;
-        text-decoration: underline;
-      }
-
-      a:focus {
-        text-decoration: underline;
-      }
-
-      a:visited {
-        color: #eeeeee;
-      }
-
       nav {
         top: 0;
         left: 0;
@@ -60,24 +42,71 @@
         max-height: 100vh;
         min-height: 100vh;
         overflow-y: auto;
-        box-sizing: border-box;
-        padding: 14px;
+        box-shadow: 0px 1px 7px -1px rgb(0 0 0 / 30%);
+        padding-top: 14px;
+      }
+
+      nav li:first-of-type {
+        margin-top: 14px;
       }
 
       nav li {
         display: block;
-        margin-bottom: 7px;
       }
       
       nav ul {
         margin: 0;
         padding: 0;
-        padding-left: 7px;
       }
+
+      a {
+        text-decoration: none;
+      }
+      
+      a:visited {
+        text-decoration: none;
+        color: #eeeeee;
+      }
+
+      nav li a {
+        width: 100%;
+        color: #eeeeee;
+        text-decoration: none;
+        padding: 10px;
+        display: block;
+        border-bottom: 1px solid rgba(0,0,0,0.4);
+        background: none;
+        transition: 0.1s background, color;
+        text-transform: capitalize;
+        font-size: 16px;
+      }
+
+      nav li:first-of-type {
+        border-top: 1px solid rgba(0,0,0,0.4);
+      }
+
+      nav li a:hover {
+        color: #4ecca3 !important;
+        background: #14181d;
+        transition: 0.2s background, color;
+      }
+
+      nav li a:visited {
+        color: #eeeeee;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      pre:target {
+        border-left: 5px solid #4ecca3;
+        transition: 0.2s border-color;
+      }
+
 
       main {
         margin-left: 200px;
-        box-sizing: border-box;
         padding: 14px;
       }
 
@@ -86,11 +115,12 @@
       }
 
       pre {
+        transition: 0.1s border-color;
         font-family: Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;
         animation: 0.2s ease-out 0s 1 fadeInBottom;
-        box-sizing: border-box;
         padding: 14px;
         background: #232931;
+        border-left: 5px solid #232931;
         border-radius: 4px;
         box-shadow: 0px 1px 7px -1px rgba(0,0,0,0.3);
         overflow-x: auto;
@@ -110,10 +140,12 @@
       }
 
       #navigation-header {
-        font-size: 24px;
+        font-size: 14px;
+        margin-top: 4px;
         margin-bottom: 7px;
         display: block;
         color: #4ecca3;
+        text-align: center;
       }
 
       #navigation-content {
@@ -129,22 +161,30 @@
       }
 
       .tag {
-        opacity: 0.9;
-        color: #4ecca3;
+        color: #232931;
+        background: #4ecca3;
+        padding: 4px;
+        display: inline-block;
+        font-size: 12px;
+        border-radius: 2px;
+        margin-right: 4px;
       }
     </style>
   </head>
   <body>
   <nav>
     <div id="navigation-content">
-      <b id="navigation-header">Features</b>
-      <ul><li><a href="#another.feature">another.feature</a></li>
-<li><a href="#example.feature">example.feature</a></li>
-<li><a href="#sub-level.feature">sub-level.feature</a></li></ul>
+      <a href="https://github.com/pietmichal/gherkin-to-docs">
+        <div style="text-align: center; font-size: 32px;">🥒➡️📄</div>
+        <b id="navigation-header">Gherkin To Docs</b>
+      </a>
+      <ul><li><a href="#another">another</a></li>
+<li><a href="#example">example</a></li>
+<li><a href="#sub level">sub level</a></li></ul>
     </div>
   </nav>
   <main>
-    <pre id="another.feature"><span class="tag">@ignore </span>
+    <pre id="another"><span class="tag">@ignore</span>
 <strong>Feature:</strong> Another
 
   <strong>Rules:</strong>
@@ -158,7 +198,7 @@
     <strong class="step">When</strong> I run the generator
     <strong class="step">Then</strong> I have living documentation
 </pre>
-<pre id="example.feature"><strong>Feature:</strong> Example
+<pre id="example"><strong>Feature:</strong> Example
 
   <strong>Rules:</strong>
   ======
@@ -169,15 +209,15 @@
     <strong class="step">When</strong> I run the generator
     <strong class="step">Then</strong> I have living documentation
 </pre>
-<pre id="sub-level.feature"><strong>Feature:</strong> Subscribers see different sets of stock images based on their subscription level
+<pre id="sub level"><strong>Feature:</strong> Subscribers see different sets of stock images based on their subscription level
 
-  <span class="tag">@ignore </span><span class="tag">@smoke </span>
+  <span class="tag">@ignore</span><span class="tag">@smoke</span>
   <strong>Scenario:</strong> Free subscribers see only the free articles
     <strong class="step">Given</strong> Free Frieda has a free subscription
     <strong class="step">When</strong> Free Frieda logs in with her valid credentials
     <strong class="step">Then</strong> she sees a Free article on the home page
 
-  <span class="tag">@smoke </span>
+  <span class="tag">@smoke</span>
   <strong>Scenario:</strong> Subscriber with a paid subscription can access both free and paid articles
     <strong class="step">Given</strong> Paid Patty has a basic-level paid subscription
     <strong class="step">When</strong> Paid Patty logs in with her valid credentials
