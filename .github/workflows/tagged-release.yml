@@ -7,23 +7,23 @@ on:
 
 jobs:
   tagged-release:
-    name: tagged release
     runs-on: ubuntu-latest
-    - uses: denoland/setup-deno@main
-      with:
-        deno-version: v1.x
-    - name: build
-      run: |
-        deno compile --allow-write --allow-read --unstable --lite --target x86_64-pc-windows-msvc --output gherkin-to-docs-win-x86_64 main.ts
-        deno compile --allow-write --allow-read --unstable --lite --target x86_64-unknown-linux-gnu --output gherkin-to-docs-linux-x86_64 main.ts
-        deno compile --allow-write --allow-read --unstable --lite --target x86_64-apple-darwin --output gherkin-to-docs-macos-x86_64 main.ts
-        deno compile --allow-write --allow-read --unstable --lite --target aarch64-apple-darwin --output gherkin-to-docs-macos-aarch64 main.ts
-    - uses: marvinpinto/action-automatic-releases@v1.1.1
-      with:
-        repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        prerelease: false
-        files: |
-          gherkin-to-docs-win-x86_64.exe
-          gherkin-to-docs-linux-x86_64
-          gherkin-to-docs-macos-x86_64
-          gherkin-to-docs-macos-aarch64
+    steps:
+      - uses: denoland/setup-deno@main
+        with:
+          deno-version: v1.x
+      - name: build
+        run: |
+          deno compile --allow-write --allow-read --unstable --lite --target x86_64-pc-windows-msvc --output gherkin-to-docs-win-x86_64 main.ts
+          deno compile --allow-write --allow-read --unstable --lite --target x86_64-unknown-linux-gnu --output gherkin-to-docs-linux-x86_64 main.ts
+          deno compile --allow-write --allow-read --unstable --lite --target x86_64-apple-darwin --output gherkin-to-docs-macos-x86_64 main.ts
+          deno compile --allow-write --allow-read --unstable --lite --target aarch64-apple-darwin --output gherkin-to-docs-macos-aarch64 main.ts
+      - uses: marvinpinto/action-automatic-releases@v1.1.1
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: |
+            gherkin-to-docs-win-x86_64.exe
+            gherkin-to-docs-linux-x86_64
+            gherkin-to-docs-macos-x86_64
+            gherkin-to-docs-macos-aarch64
