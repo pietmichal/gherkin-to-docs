@@ -1,10 +1,13 @@
+@ignore
 Feature: Another
 
-    Rules:
-    ======
-    - Example rule
+  Rules:
+  ======
+  - Example rule
 
-    Scenario: another
-        Given I have a feature file
-        When I run the generator
-        Then I have living documentation
+  # This is a comment
+  # This is another comment
+  Scenario: another
+    Given I have a feature file
+    When I run the generator
+    Then I have living documentation

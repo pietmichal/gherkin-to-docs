@@ -30,7 +30,7 @@ export const outputTemplate = `
       body {
         background-color: #393e46;
         color: #eeeeee;
-        font-family: sans-serif;
+        font-family: Montserrat,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
       }
 
       a {
@@ -86,7 +86,7 @@ export const outputTemplate = `
       }
 
       pre {
-        font-family: Consolas;
+        font-family: Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;
         animation: 0.2s ease-out 0s 1 fadeInBottom;
         box-sizing: border-box;
         padding: 14px;
@@ -121,6 +121,15 @@ export const outputTemplate = `
       }
 
       .step {
+        color: #4ecca3;
+      }
+
+      .comment {
+        opacity: 0.5;
+      }
+
+      .tag {
+        opacity: 0.9;
         color: #4ecca3;
       }
     </style>

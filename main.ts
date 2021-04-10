@@ -22,16 +22,7 @@ console.log("✍️  Writing output...");
 
 const output = outputTemplate
   .replace("{{NAVIGATION}}", getNavigationOutput())
-  .replace("{{CONTENT}}", getContentOutput())
-  .replaceAll("Feature:", "<strong>Feature:</strong>")
-  .replaceAll("Rules:", "<strong>Rules:</strong>")
-  .replaceAll("Scenario:", "<strong>Scenario:</strong>")
-  .replaceAll("Scenario Outline:", "<strong>Scenario Outline:</strong>")
-  .replaceAll("Examples:", "<strong>Examples:</strong>")
-  .replaceAll("Given", `<strong class="step">Given</strong>`)
-  .replaceAll("When", `<strong class="step">When</strong>`)
-  .replaceAll("And", `<strong class="step">And</strong>`)
-  .replaceAll("Then", `<strong class="step">Then</strong>`);
+  .replace("{{CONTENT}}", getContentOutput());
 
 function getNavigationOutput() {
   return (
@@ -46,9 +37,38 @@ function getNavigationOutput() {
 }
 
 function getContentOutput() {
-  return features
-    .map((feature) => `<pre id="${feature.name}">${feature.content}</pre>`)
-    .join("\n");
+  return (
+    features
+      .map((feature) => `<pre id="${feature.name}">${feature.content}</pre>`)
+      .join("\n")
+      .replaceAll("Feature:", "<strong>Feature:</strong>")
+      .replaceAll("Rules:", "<strong>Rules:</strong>")
+      .replaceAll("Scenario:", "<strong>Scenario:</strong>")
+      .replaceAll("Scenario Outline:", "<strong>Scenario Outline:</strong>")
+      .replaceAll("Examples:", "<strong>Examples:</strong>")
+      .replaceAll("Given", `<strong class="step">Given</strong>`)
+      .replaceAll("When", `<strong class="step">When</strong>`)
+      .replaceAll("And", `<strong class="step">And</strong>`)
+      .replaceAll("Then", `<strong class="step">Then</strong>`)
+      // Comments
+      .replaceAll(
+        /#(.*?)\n/g,
+        (str) => `<span class="comment">${str.replace(/\n/, "")}</span>`
+      )
+      .replaceAll(
+        /#(.*?)\r/g,
+        (str) => `<span class="comment">${str.replace(/\r/, "")}</span>`
+      )
+      // Tags
+      .replaceAll(
+        /@(.*?)\n/g,
+        (str) => `<span class="tag">${str.replace(/\n/, "")}</span>`
+      )
+      .replaceAll(
+        /@(.*?)\s/g,
+        (str) => `<span class="tag">${str.replace(/\s/, " ")}</span>`
+      )
+  );
 }
 
 try {
