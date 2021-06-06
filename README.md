@@ -1,3 +1,7 @@
+> :warning: This is not maintaned anymore. 
+> 
+> :bangbang: Parsing is buggy. The best solution is to use Node and official gherkin parser to then use AST to create HTML output. 
+
 # 🥒➡️📄 Gherkin To Docs
 
 Turn your project's gherkin files into simple documentation.
